@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="Enhanced prompt">
+  <title>Prompt enhancer</title>
+  <!-- Wand: violet shaft rising to the upper right, pointing at the large sparkle. -->
+  <path d="M52 204 L154 102" fill="none" stroke="#6C5CE7" stroke-width="28" stroke-linecap="round"/>
+  <!-- Large four-point sparkle at the wand tip: the "enhance" mark. -->
+  <path d="M186 10 Q194.5 61.5 246 70 Q194.5 78.5 186 130 Q177.5 78.5 126 70 Q177.5 61.5 186 10 Z" fill="#FFB020"/>
+  <!-- Small companion sparkle, keeping the silhouette asymmetric but balanced. -->
+  <path d="M70 30 Q75.5 57.5 103 63 Q75.5 68.5 70 96 Q64.5 68.5 37 63 Q64.5 57.5 70 30 Z" fill="#7B61FF"/>
+</svg>

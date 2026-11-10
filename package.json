@@ -1,0 +1,36 @@
+{
+  "name": "@local/prompt-enhancer",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Enhanced prompt: one click in the composer toolbar rewrites the draft prompt into a clearer, fuller, directly executable version while keeping its intent and language.",
+  "type": "module",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg",
+    "./revert.png": "./revert.png",
+    "./revert-mask.png": "./revert-mask.png"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "icon.svg",
+    "revert.png",
+    "revert-mask.png"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-conversation"
+      ]
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "meta": {
+    "title": "提示词增强",
+    "description": "在输入框工具栏、模型选择器旁加入一个提示词增强按钮：把正在编辑的草稿改写成更清晰、更完整、可直接执行的提示词，保留原意与原语言，并且只输出增强后的提示词本身。"
+  },
+  "action.enhance": "增强提示词",
+  "action.enhancing": "正在增强提示词…",
+  "action.empty": "输入框还是空的，先写点内容再增强",
+  "action.revert": "退回：恢复到优化前的内容",
+  "action.reverted": "已退回优化前的内容",
+  "action.unavailable": "当前输入框无法使用提示词增强",
+  "error.generic": "提示词增强失败，请重试",
+  "error.network": "无法连接到提示词增强服务，请确认服务正在运行",
+  "error.empty_result": "模型没有返回可用的提示词，请重试",
+  "settings.title": "提示词增强",
+  "settings.description": "设置提示词优化方向的关键词。这些关键词会影响每个增强后提示词的语气、风格和详细程度。留空则保持默认行为。",
+  "settings.keywordsLabel": "风格关键词",
+  "settings.keywordsPlaceholder": "例如：\n简洁\n正式\n面向初学者",
+  "settings.keywordsHint": "关键词只影响提示词的写法，不改变它的要求：不会因此引入原文未提及的技术选型，也不会新增原文未提出的需求。",
+  "settings.save": "保存",
+  "settings.saving": "保存中…",
+  "settings.saved": "已保存",
+  "settings.saveFailed": "保存失败，请重试",
+  "settings.loading": "加载中…",
+  "settings.loadFailed": "无法读取已保存的关键词",
+  "settings.clear": "清空",
+  "settings.retry": "重试",
+  "settings.noChanges": "没有需要保存的改动：输入框内容与已保存的关键词一致",
+  "settings.modelLabel": "优化模型",
+  "settings.modelDefault": "跟随智能体当前模型",
+  "settings.modelHint": "提示词优化所使用的模型，与智能体自身的模型选择互不影响。",
+  "settings.modelUnavailable": "模型列表不可用"
+}

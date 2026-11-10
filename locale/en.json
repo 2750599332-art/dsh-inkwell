@@ -1,0 +1,33 @@
+{
+  "meta": {
+    "title": "Prompt enhancer",
+    "description": "Adds a one-click prompt-enhance button to the composer tool row beside the model selector: it rewrites the draft prompt into a clearer, more complete, directly executable version, keeps the original intent and language, and returns only the enhanced prompt."
+  },
+  "action.enhance": "Enhance prompt",
+  "action.enhancing": "Enhancing prompt…",
+  "action.empty": "Type something first: the composer is empty",
+  "action.revert": "Revert to the pre-enhancement text",
+  "action.reverted": "Reverted to the pre-enhancement text",
+  "action.unavailable": "Prompt enhancer is unavailable in this composer",
+  "error.generic": "Prompt enhancement failed. Try again",
+  "error.network": "Cannot reach the prompt enhancement service. Check that it is running",
+  "error.empty_result": "The model returned no usable prompt. Try again",
+  "settings.title": "Prompt enhancer",
+  "settings.description": "Set the direction the rewrite should follow. These keywords shape the tone, register, and level of detail of every enhanced prompt. Leave the box empty to keep the default behaviour.",
+  "settings.keywordsLabel": "Style keywords",
+  "settings.keywordsPlaceholder": "e.g.\nconcise\nformal tone\nbeginner friendly",
+  "settings.keywordsHint": "Keywords affect how the prompt is written, never what it asks for: they cannot add a technology or a requirement the original text did not mention.",
+  "settings.save": "Save",
+  "settings.saving": "Saving…",
+  "settings.saved": "Saved",
+  "settings.saveFailed": "Could not save. Try again",
+  "settings.loading": "Loading…",
+  "settings.loadFailed": "Could not read the saved keywords",
+  "settings.clear": "Clear",
+  "settings.retry": "Retry",
+  "settings.noChanges": "No unsaved changes: the box already matches what is stored",
+  "settings.modelLabel": "Enhancement model",
+  "settings.modelDefault": "Use the agent's current model",
+  "settings.modelHint": "The model prompt enhancement runs on. Independent of the agent's own model selection.",
+  "settings.modelUnavailable": "Model list unavailable"
+}
