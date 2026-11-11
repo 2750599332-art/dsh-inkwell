@@ -1,9 +1,14 @@
 {
-  "name": "@local/prompt-enhancer",
+  "name": "prompt-enhancer",
   "version": "1.0.0",
-  "private": true,
   "description": "Enhanced prompt: one click in the composer toolbar rewrites the draft prompt into a clearer, fuller, directly executable version while keeping its intent and language.",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/2750599332-art/prompt-enhancer.git"
+  },
+  "homepage": "https://github.com/2750599332-art/prompt-enhancer",
+  "license": "MIT",
   "exports": {
     ".": "./index.js",
     "./client": "./client.js",

@@ -36,7 +36,7 @@
  * to correct it.
  */
 window.__ModuleLoader__.load({
-  id: '@local/prompt-enhancer',
+  id: 'prompt-enhancer',
   factory(require) {
     const React = require('react');
     const h = React.createElement;
@@ -396,7 +396,7 @@ window.__ModuleLoader__.load({
       if (typeof document === 'undefined') return () => {};
       try {
         const tag = document.createElement('style');
-        tag.dataset.plugin = '@local/prompt-enhancer';
+        tag.dataset.plugin = 'prompt-enhancer';
         tag.dataset.pluginCss = CSS_ID;
         tag.textContent = CSS;
         document.head.appendChild(tag);

@@ -1,5 +1,5 @@
 /**
- * Host half of the `@local/prompt-enhancer` bundle.
+ * Host half of the `prompt-enhancer` bundle.
  *
  * Exposes one operation — "rewrite this raw prompt into a stronger prompt" —
  * through a single loopback-only HTTP route on the Harness Web carrier:

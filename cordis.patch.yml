@@ -4,4 +4,4 @@
 # half, which draws the enhance button in the composer tool row.
 - insert:
     - id: prompt-enhancer
-      name: '@local/prompt-enhancer'
+      name: prompt-enhancer
