@@ -36,17 +36,17 @@
  * to correct it.
  */
 window.__ModuleLoader__.load({
-  id: 'prompt-enhancer',
+  id: 'dsh-inkwell',
   factory(require) {
     const React = require('react');
     const h = React.createElement;
 
-    const NS = 'prompt-enhancer';
-    const LOG = '[prompt-enhancer]';
+    const NS = 'dsh-inkwell';
+    const LOG = '[dsh-inkwell]';
     const ENDPOINT = '/plugins/prompt-enhancer/enhance';
     const SETTINGS_ENDPOINT = '/plugins/prompt-enhancer/settings';
     const MODELS_ENDPOINT = '/plugins/prompt-enhancer/models';
-    const CSS_ID = 'prompt-enhancer/button.css';
+    const CSS_ID = 'dsh-inkwell/button.css';
 
     // One in-flight request per session; survives a remount of the entry.
     const inFlight = new Map();
@@ -396,7 +396,7 @@ window.__ModuleLoader__.load({
       if (typeof document === 'undefined') return () => {};
       try {
         const tag = document.createElement('style');
-        tag.dataset.plugin = 'prompt-enhancer';
+        tag.dataset.plugin = 'dsh-inkwell';
         tag.dataset.pluginCss = CSS_ID;
         tag.textContent = CSS;
         document.head.appendChild(tag);
@@ -1020,7 +1020,7 @@ window.__ModuleLoader__.load({
             disabled,
             'data-state': state,
             'data-busy': busy ? '' : undefined,
-            'data-prompt-enhancer': '',
+            'data-dsh-inkwell': '',
             onClick,
           },
           h(StateGlyph, { state })
@@ -1470,7 +1470,7 @@ window.__ModuleLoader__.load({
     }
 
     return {
-      name: 'prompt-enhancer', // = fiber.name → entry.registrant (client-runner:555)
+      name: 'dsh-inkwell', // = fiber.name → entry.registrant (client-runner:555)
       inject: ['slots', 'locale'],
       apply(ctx) {
         // Dictionaries first: the slot's `t` must resolve on its first render.
@@ -1488,16 +1488,16 @@ window.__ModuleLoader__.load({
             warn('locale registration skipped', error);
             return () => {};
           }
-        }, 'prompt-enhancer: copy');
+        }, 'dsh-inkwell: copy');
         const t = ctx.locale.bind(NS);
 
-        ctx.effect(installStyles, 'prompt-enhancer: styles');
+        ctx.effect(installStyles, 'dsh-inkwell: styles');
 
         ctx.slots.inject('conversation.input.right', () =>
           ctx.slots.register(
             {
               name: 'conversation.input.right',
-              id: 'prompt-enhancer',
+              id: 'dsh-inkwell',
               // Negative order sorts this entry ahead of the row's other
               // occupants (the WorkBuddy credit readout registers at 4) while
               // the whole row still renders before `conversation.input.model`.
@@ -1514,7 +1514,7 @@ window.__ModuleLoader__.load({
           const disposeSection = ctx.slots.register(
             {
               name: 'settings.section',
-              id: 'prompt-enhancer',
+              id: 'dsh-inkwell',
               order: 16,
               locale: NS,
               label: () => t('settings.title'),
@@ -1523,7 +1523,7 @@ window.__ModuleLoader__.load({
             (props) => h(Guard, null, h(SettingsSection, props))
           );
           const disposeIcon = ctx.slots.inject('settings.section.icon', () =>
-            ctx.slots.register({ name: 'settings.section.icon', id: 'prompt-enhancer', locale: NS }, () =>
+            ctx.slots.register({ name: 'settings.section.icon', id: 'dsh-inkwell', locale: NS }, () =>
               h(
                 'svg',
                 {

@@ -1,13 +1,13 @@
 {
-  "name": "prompt-enhancer",
+  "name": "dsh-inkwell",
   "version": "1.0.0",
   "description": "Enhanced prompt: one click in the composer toolbar rewrites the draft prompt into a clearer, fuller, directly executable version while keeping its intent and language.",
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/2750599332-art/prompt-enhancer.git"
+    "url": "git+https://github.com/2750599332-art/dsh-inkwell.git"
   },
-  "homepage": "https://github.com/2750599332-art/prompt-enhancer",
+  "homepage": "https://github.com/2750599332-art/dsh-inkwell",
   "license": "MIT",
   "exports": {
     ".": "./index.js",

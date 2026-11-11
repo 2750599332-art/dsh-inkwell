@@ -1159,7 +1159,7 @@ async function enhanceWithModel(ctx, llm, config, text, signal) {
     // effect on the very next enhancement without restarting the plugin.
     system: SYSTEM_INSTRUCTION + styleBlock(preferences.keywords),
     maxTokens: positiveInteger(config.maxTokens, DEFAULT_MAX_TOKENS),
-    purpose: 'prompt-enhancer',
+    purpose: 'dsh-inkwell',
     signal,
   }
   if (route.reasoningEffort !== undefined) baseOptions.reasoningEffort = route.reasoningEffort
@@ -1192,8 +1192,8 @@ async function enhanceWithModel(ctx, llm, config, text, signal) {
     retried = true
     ctx.logger?.warn?.(
       leaks.length > 0
-        ? `prompt-enhancer: first attempt invented ${leaks.map((leak) => leak.token).join(', ')}; retrying once`
-        : `prompt-enhancer: first attempt was a near-no-op (${prompt.length} characters); retrying once`,
+        ? `dsh-inkwell: first attempt invented ${leaks.map((leak) => leak.token).join(', ')}; retrying once`
+        : `dsh-inkwell: first attempt was a near-no-op (${prompt.length} characters); retrying once`,
     )
     const second = await attempt(buildLeakRetryMessage(text, leaks, { tooShort: tooShortFirst }))
     if (second.ok) {
@@ -1219,13 +1219,13 @@ async function enhanceWithModel(ctx, llm, config, text, signal) {
       prompt = swept.text
       stripped = swept.stripped
       leaks = detectLeaks(text, prompt)
-      ctx.logger?.warn?.(`prompt-enhancer: stripped ${stripped} characters that invented ${invented}`)
+      ctx.logger?.warn?.(`dsh-inkwell: stripped ${stripped} characters that invented ${invented}`)
     }
     if (swept.gutted === true) {
-      ctx.logger?.warn?.(`prompt-enhancer: stripping would have gutted the prompt; could not safely remove ${invented}`)
+      ctx.logger?.warn?.(`dsh-inkwell: stripping would have gutted the prompt; could not safely remove ${invented}`)
     }
     if (leaks.length > 0 && swept.gutted !== true && stripped > 0) {
-      ctx.logger?.warn?.(`prompt-enhancer: still mentions ${leaks.map((leak) => leak.token).join(', ')} after stripping`)
+      ctx.logger?.warn?.(`dsh-inkwell: still mentions ${leaks.map((leak) => leak.token).join(', ')} after stripping`)
     }
   }
 
@@ -1271,7 +1271,7 @@ function guardHandler(ctx, name, handler) {
     try {
       await handler(req, res)
     } catch (error) {
-      ctx.logger?.warn?.(`prompt-enhancer: ${name} route escaped its own handling: ${describe(error)}`)
+      ctx.logger?.warn?.(`dsh-inkwell: ${name} route escaped its own handling: ${describe(error)}`)
       try {
         if (res !== undefined && res !== null && res.writableEnded !== true && res.destroyed !== true) {
           json(res, 500, {
@@ -1380,12 +1380,12 @@ function createHandler(ctx, config) {
       if (result.ok) {
         if (result.leftoverLeaks.length > 0) {
           ctx.logger?.warn?.(
-            `prompt-enhancer: returning a prompt that still mentions ${result.leftoverLeaks.join(', ')}; no safe way to remove it remained`,
+            `dsh-inkwell: returning a prompt that still mentions ${result.leftoverLeaks.join(', ')}; no safe way to remove it remained`,
           )
         }
         if (result.chars > result.acceptChars) {
           ctx.logger?.warn?.(
-            `prompt-enhancer: enhanced prompt is ${result.chars} characters, above the ${result.acceptChars}-character acceptance limit; returning the model text unchanged`,
+            `dsh-inkwell: enhanced prompt is ${result.chars} characters, above the ${result.acceptChars}-character acceptance limit; returning the model text unchanged`,
           )
         }
         json(res, 200, { ok: true, prompt: result.prompt })
@@ -1393,7 +1393,7 @@ function createHandler(ctx, config) {
       }
       json(res, result.status, { ok: false, error: result.error, code: result.code })
     } catch (error) {
-      ctx.logger?.warn?.(`prompt-enhancer: enhancement crashed: ${describe(error)}`)
+      ctx.logger?.warn?.(`dsh-inkwell: enhancement crashed: ${describe(error)}`)
       json(res, 500, { ok: false, error: `Prompt enhancement failed: ${safeMessage(error)}`, code: 'internal-error' })
     } finally {
       clearTimeout(timer)
@@ -1523,7 +1523,7 @@ function createSettingsHandler(ctx, config) {
           } catch (error) {
             groups = undefined
             ctx.logger?.warn?.(
-              `prompt-enhancer: could not verify the chosen model against the live catalog, saving it unverified: ${describe(error)}`,
+              `dsh-inkwell: could not verify the chosen model against the live catalog, saving it unverified: ${describe(error)}`,
             )
           }
           if (groups !== undefined) {
@@ -1543,7 +1543,7 @@ function createSettingsHandler(ctx, config) {
 
     try {
       await writePreferences(config.home, { keywords, model })
-      ctx.logger?.log?.(`prompt-enhancer: saved ${keywords.length} style keyword(s), model ${model === '' ? '(agent default)' : model}`)
+      ctx.logger?.log?.(`dsh-inkwell: saved ${keywords.length} style keyword(s), model ${model === '' ? '(agent default)' : model}`)
       json(res, 200, { ok: true, keywords, model })
     } catch (error) {
       json(res, 500, { ok: false, error: `Could not save the settings: ${safeMessage(error)}`, code: 'write-failed' })
@@ -1627,7 +1627,7 @@ export function apply(ctx, config) {
           handler: guardHandler(sub, 'settings', createSettingsHandler(sub, options)),
         })
       } catch (error) {
-        sub.logger?.warn?.(`prompt-enhancer: settings route not mounted: ${describe(error)}`)
+        sub.logger?.warn?.(`dsh-inkwell: settings route not mounted: ${describe(error)}`)
         return () => {}
       }
       return () => {
@@ -1648,7 +1648,7 @@ export function apply(ctx, config) {
           handler: guardHandler(sub, 'models', createModelsHandler(sub)),
         })
       } catch (error) {
-        sub.logger?.warn?.(`prompt-enhancer: models route not mounted: ${describe(error)}`)
+        sub.logger?.warn?.(`dsh-inkwell: models route not mounted: ${describe(error)}`)
         return () => {}
       }
       return () => {
@@ -1663,7 +1663,7 @@ export function apply(ctx, config) {
 }
 
 /** Stable Cordis plugin name. */
-export const name = 'prompt-enhancer'
+export const name = 'dsh-inkwell'
 
 /**
  * Optional services this plugin needs.
